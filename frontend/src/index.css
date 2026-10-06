@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased font-sans transition-colors duration-300;
+  }
+}
+
+/* Glassmorphism components */
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-slate-200/50 shadow-lg shadow-slate-100/40;
+}
+.dark .glass-card {
+  @apply bg-slate-900/80 backdrop-blur-lg border border-slate-800/40 shadow-2xl shadow-black/20;
+}
+
+.glass-input {
+  @apply bg-white/50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition-all duration-200 dark:bg-slate-950/50 dark:border-slate-800 dark:focus:ring-sky-500/20 dark:focus:border-sky-400;
+}
+
+.btn-glow {
+  @apply relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-sky-500/20 active:scale-[0.98];
+}
+
+.dark .btn-glow {
+  @apply hover:shadow-lg hover:shadow-sky-500/30;
+}
+
+/* Custom Scrollbar for Dashboard lists */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300/50 rounded-full dark:bg-slate-800/50;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400/50 dark:bg-slate-700/50;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
