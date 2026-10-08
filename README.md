@@ -46,7 +46,7 @@ skillpath-ai/
 │   │   └── crud.py        # Database operations helpers
 │   ├── requirements.txt   # Backend pip packages
 │   ├── seed.py            # Database seed script for quick evaluator demos
-│   └── .env               # Configuration variables (API key placeholder)
+│   └── .env.example       # Local configuration template
 └── frontend/
     ├── package.json       # Node package configurations
     ├── vite.config.js
@@ -124,6 +124,20 @@ Ensure you have **Python 3** (`py` launcher on Windows) and **Node.js** (includi
    npm run dev
    ```
 4. Access the web interface at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## ☁️ Deploying a Live Demo
+
+The `render.yaml` Blueprint deploys the API and frontend to Render. A Neon PostgreSQL database keeps user accounts and roadmaps between deploys; the local app continues to use SQLite by default.
+
+1. Create a PostgreSQL project on [Neon](https://neon.tech/) and copy its connection string.
+2. In Render, create a new Blueprint from this GitHub repository and use `render.yaml`.
+3. When prompted, set `DATABASE_URL` to the Neon connection string. Render generates a production `SECRET_KEY` for the API.
+4. After Render creates the services, check that `CORS_ORIGINS` on the API is the exact URL of the frontend service, including `https://`.
+5. Wait for both services to finish deploying, then open the frontend service URL and register an account. Set `GEMINI_API_KEY` on the API service if you want AI-generated roadmaps; otherwise the local generator is used.
+
+The free Render web service may sleep when idle, so its first request can take a little while. Keep database credentials and API keys in the hosting provider's environment settings, not in GitHub.
 
 ---
 

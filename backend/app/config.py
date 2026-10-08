@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 120
     DATABASE_URL: str = "sqlite:///./skillpath.db"
     GEMINI_API_KEY: str = ""
+    CORS_ORIGINS: str = ""
 
     class Config:
         # Pydantic v2 settings config

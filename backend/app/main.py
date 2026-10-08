@@ -7,6 +7,7 @@ import json
 from typing import List, Optional
 
 from app import models, schemas, crud, auth, ai, pdf
+from app.config import settings
 from app.database import engine, get_db
 
 # Initialize database models (auto-creates tables in SQLite)
@@ -18,10 +19,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for frontend React integration (allows local dev origins)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[],
+    allow_origins=[origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()],
     allow_origin_regex=r"^http://(localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
